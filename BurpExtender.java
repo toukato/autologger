@@ -20,32 +20,41 @@ public class BurpExtender implements IBurpExtender, IHttpListener
     	SimpleDateFormat simpledateformat = new SimpleDateFormat("yyyyMMddHH.");
     	String dateString = simpledateformat.format(date);
     	String autolog = dateString + "log";
+    	String request = "";
+    	String response = "";
+    	SimpleDateFormat simpledateformat1 = new SimpleDateFormat("HH:mm:ss");
+    	String dateOutput = simpledateformat1.format(date);
+    	
     	try
     	{
-    		FileWriter filewriter = new FileWriter(autolog, true);
-    		BufferedWriter bufferedwriter = new BufferedWriter(filewriter);
+    		if(messageInfo.getResponse() != null)
+    		{
     		
-    		bufferedwriter.write("========================================");
-    		bufferedwriter.newLine();
-    		bufferedwriter.write(String.valueOf(date));
-    		bufferedwriter.newLine();
-    		bufferedwriter.write(String.valueOf(messageInfo.getHttpService()));;
-    		bufferedwriter.newLine();
-    		bufferedwriter.write("========================================");
-    		bufferedwriter.newLine();
-    		bufferedwriter.newLine();
-    		bufferedwriter.write(new String(messageInfo.getRequest()));
-    		bufferedwriter.newLine();
-    		bufferedwriter.newLine();
-    		bufferedwriter.write(new String(messageInfo.getResponse()));
-    		bufferedwriter.newLine();
-    		bufferedwriter.newLine();
-    		bufferedwriter.flush();
-    		bufferedwriter.close();
+    			FileWriter filewriter = new FileWriter(autolog, true);
+    			BufferedWriter bufferedwriter = new BufferedWriter(filewriter);
+    			request = new String(messageInfo.getRequest());
+    			response = new String(messageInfo.getResponse());
+    		
+	    		bufferedwriter.write("========================================");
+	    		bufferedwriter.newLine();
+	    		bufferedwriter.write(dateOutput);
+	    		bufferedwriter.write("  ");
+	    		bufferedwriter.write(String.valueOf(messageInfo.getHttpService()));;
+	    		bufferedwriter.newLine();
+	    		bufferedwriter.write("========================================");
+	    		bufferedwriter.newLine();
+	    		bufferedwriter.write(request);
+	    		bufferedwriter.newLine();
+	    		bufferedwriter.write("========================================");
+	    		bufferedwriter.newLine();
+	    		bufferedwriter.write(response);
+	    		bufferedwriter.newLine();
+	    		bufferedwriter.close();
+    		}
     	}
     	catch(IOException exception)
     	{
-//    		System.err.println(exception);
+    		System.err.println(exception);
     	}
     }
 }
