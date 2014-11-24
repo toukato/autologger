@@ -35,19 +35,24 @@ public class BurpExtender implements IBurpExtender, IHttpListener
     			request = new String(messageInfo.getRequest());
     			response = new String(messageInfo.getResponse());
     		
-	    		bufferedwriter.write("========================================");
+	    		bufferedwriter.write("======================================================");
 	    		bufferedwriter.newLine();
 	    		bufferedwriter.write(dateOutput);
 	    		bufferedwriter.write("  ");
 	    		bufferedwriter.write(String.valueOf(messageInfo.getHttpService()));;
 	    		bufferedwriter.newLine();
-	    		bufferedwriter.write("========================================");
+	    		bufferedwriter.write("======================================================");
 	    		bufferedwriter.newLine();
 	    		bufferedwriter.write(request);
 	    		bufferedwriter.newLine();
-	    		bufferedwriter.write("========================================");
+	    		bufferedwriter.write("======================================================");
 	    		bufferedwriter.newLine();
 	    		bufferedwriter.write(response);
+	    		bufferedwriter.newLine();
+	    		bufferedwriter.write("======================================================");
+	    		bufferedwriter.newLine();
+	    		bufferedwriter.newLine();
+	    		bufferedwriter.newLine();
 	    		bufferedwriter.newLine();
 	    		bufferedwriter.close();
     		}
